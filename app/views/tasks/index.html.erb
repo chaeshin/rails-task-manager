@@ -1,0 +1,19 @@
+<div class="container">
+  <div>
+    <h1 class='mt-4'>My tasks</h1>
+
+      <% @tasks.each do |task| %>
+        <div class='d-flex'>
+          <input type="checkbox" <%= "checked" if task.completed %>>
+          <%# <%= check_box("task", task.id, {checked: task.completed}) %>
+          <p><%= link_to task.title, task_path(task) %></p>
+          <a href="" data-turbo-method='delete'></a>
+          <%= link_to task_path(task), class: 'btn btn-link', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
+        </div>
+      <% end %>
+
+    <%= link_to 'Add a new task', new_task_path %>
+  </div>
+</div>
